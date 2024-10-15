@@ -5,3 +5,7 @@
 :root {
     overscroll-behavior: none;
   }
+
+  body {
+    padding: 16px;
+  }
