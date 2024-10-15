@@ -5,27 +5,93 @@ Template Name: HomePage
 
 include('header.php');
 
-$image = get_field('image');
-$Image_url = $image['url'];
-
-if ($Image_url):
-?>
-    <div class="md:col-span-6 flex justify-center items-center " style="background-image: url('<?php echo esc_url($Image_url); ?>'); background-size: cover; background-position: center; height: 100%; width: 100%;">
-    </div>
-<?php
-endif;
 ?>
 
 <div class="content">
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <div class="grid grid-cols-1 md:grid-cols-10 gap-0 md:gap-4 h-dvh md:h-screen">
-            <div class="md:col-span-4 flex items-end">
-                <h1 class="text-white text-5xl md:text-7xl p-4 md:p-8 font-Instrument font-thin uppercase"><?php the_field('titre'); ?></h1>
-            </div>
-            <div class="md:col-span-6 flex justify-center items-center " style="background-image: url('<?php echo esc_url($Image_url); ?>'); background-size: cover; background-position: center; height: 100%; width: 100%;">
-            </div>
-        </div>
-    <?php endwhile; endif; ?>
+    <?php if (have_rows('hero_section')) : ?>
+        <section class="hero-section">
+
+            <?php while (have_rows('hero_section')) : the_row(); ?>
+
+                <?php 
+                // Affiche le lien de la section héros 
+                    $lien = get_sub_field('lien');
+                    if ($lien) : ?>
+                        <a href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
+                            <?php echo esc_html($lien['title']); ?>
+                        </a>
+                <?php endif; ?>
+
+                <?php 
+                // Affiche l'image de la section héros   
+                $illustration = get_sub_field('illustration_hero_section');
+                if ($illustration) : ?>
+                    <img src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                <?php endif; ?>
+
+            <?php endwhile; ?>
+
+        </section>
+    <?php endif; ?>
+
+        <section class="presentation">
+            <p><?php the_field('presentation'); ?></p>
+        </section>
+
+    <?php if (have_rows('notre_savoir_faire')) : ?>
+        <section class="notre-savoir-faire">
+
+            <?php while (have_rows('notre_savoir_faire')) : the_row(); ?>
+
+                <h2><?php the_sub_field('titre'); ?></h2>
+
+                <?php 
+                // Affiche le lien de la section notre savoir faire
+                $lien = get_sub_field('lien');
+                if ($lien) : ?>
+                    <a href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
+                        <?php echo esc_html($lien['title']); ?>
+                    </a>
+                <?php endif; ?>
+
+                <?php 
+                // Affiche l'image de la section notre savoir faire
+                $illustration = get_sub_field('illustration');
+                if ($illustration) : ?>
+                    <img src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                <?php endif; ?>
+            <?php endwhile; ?>
+
+        </section>
+    <?php endif; ?>
+
+    <?php if (have_rows('section_restaurations_et_creations')) : ?>
+        <section class="restaurations-et-creations">
+
+            <?php while (have_rows('section_restaurations_et_creations')) : the_row(); ?>
+
+                <h2><?php the_sub_field('presentation'); ?></h2>
+
+                <?php 
+                // Affiche le lien de la section restaurations et creations
+                $lien = get_sub_field('lien');
+                if ($lien) : ?>
+                    <a href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
+                        <?php echo esc_html($lien['title']); ?>
+                    </a>
+                <?php endif; ?>
+
+                <?php 
+                // Affiche l'image de la section restaurations et creations
+                $illustration = get_sub_field('illustration');
+                if ($illustration) : ?>
+                    <img src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                <?php endif; ?>
+                
+            <?php endwhile; ?>
+
+        </section>
+    <?php endif; ?>
 </div>
 
 <?php
