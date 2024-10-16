@@ -1,3 +1,59 @@
+@font-face {
+  font-family: 'Tiempos';
+
+  src: url('assets/fonts/Tiempos-light.woff2') format('woff2');
+
+  font-weight: 300;
+
+  /* Light */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tiempos';
+
+  src: url('assets/fonts/Tiempos-regular.woff2') format('woff2');
+
+  font-weight: 400;
+
+  /* Regular */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+
+  src: url('assets/fonts/Untitled-sans-regular.woff2') format('woff2');
+
+  font-weight: 400;
+
+  /* Regular */
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+
+  src: url('assets/fonts/Untitled-sans-medium.woff2') format('woff2');
+
+  font-weight: 500;
+
+  /* Medium */
+
+  font-style: normal;
+}
+
+:root {
+  overscroll-behavior: none;
+}
+
+body {
+  padding: 16px;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -106,9 +162,7 @@
   --tw-contain-style:  ;
 }
 
-/*
-! tailwindcss v3.4.13 | MIT License | https://tailwindcss.com
-*/
+/* ! tailwindcss v3.4.13 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -688,6 +742,14 @@ video {
   text-align: right;
 }
 
+.font-tiempos {
+  font-family: Tiempos, serif;
+}
+
+.font-untitled {
+  font-family: Untitled Sans, sans-serif;
+}
+
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -698,22 +760,27 @@ video {
   line-height: 1;
 }
 
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-:root {
-  overscroll-behavior: none;
-}
-
-body {
-  padding: 16px;
 }
 
 @media (min-width: 640px) {

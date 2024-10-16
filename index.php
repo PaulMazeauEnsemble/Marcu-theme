@@ -17,7 +17,7 @@ include('header.php');
                 // Affiche le lien de la section héros 
                     $lien = get_sub_field('lien');
                     if ($lien) : ?>
-                        <a href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
+                        <a class="font-tiempos font-light text-4xl" href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
                             <?php echo esc_html($lien['title']); ?>
                         </a>
                 <?php endif; ?>

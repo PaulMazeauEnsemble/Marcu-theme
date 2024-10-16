@@ -12,6 +12,10 @@ module.exports = {
         'color-background': '#F8F6F1',
         'color-background-bright': '#FFFDF7',
       },
+      fontFamily: {
+        tiempos: ['Tiempos', 'serif'],
+        untitled: ['Untitled Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [],

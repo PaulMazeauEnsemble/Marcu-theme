@@ -1,6 +1,6 @@
 <div class="restauration-card">
     <h2><?php the_title(); ?></h2>
-    <p><?php the_field('description'); ?></p>
+    <p class="font-untitled font-regulartext-base"><?php the_field('description'); ?></p>
     <?php 
     $galerie_photos = get_field('galerie_photo');
     if ($galerie_photos): ?>
