@@ -731,10 +731,6 @@ body {
     grid-column: span 5 / span 5;
   }
 
-  .md\:col-span-6 {
-    grid-column: span 6 / span 6;
-  }
-
   .md\:my-0 {
     margin-top: 0px;
     margin-bottom: 0px;
