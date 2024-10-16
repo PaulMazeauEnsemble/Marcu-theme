@@ -113,4 +113,14 @@ function register_all_menus() {
 }
 add_action('init', 'register_all_menus');
 
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title'    => 'Footer Settings',
+        'menu_title'    => 'Footer',
+        'menu_slug'     => 'footer-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false
+    ));
+}
+
 ?>

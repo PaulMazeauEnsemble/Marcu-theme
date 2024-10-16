@@ -28,8 +28,8 @@
   font-style: normal;
 }
 
-:root {
-    overscroll-behavior: none;
+body {
+    overscroll-behavior-y: none;
   }
 
 @tailwind base;
