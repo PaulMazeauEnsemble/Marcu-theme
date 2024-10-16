@@ -6,9 +6,28 @@ Template Name: Restauration
 include('header.php');
 ?>
 
-<div class="content">
-    <h1>Page restauration</h1>
+<div class="content pt-44 bg-color-background">
+        <section class="hero grid grid-cols-12 gap-x-4 px-4 pb-8">
 
+            <div class="hero-text col-span-6 col-start-1 flex flex-col justify-between">
+                <h1 class="font-tiempos font-light text-5xl col-span-10 col-start-2"><?php the_field('titre'); ?></h1>
+                <p class="font-untitled text-base col-span-10 col-start-2"><?php the_field('description'); ?></p>
+            </div>
+
+            <div class="hero-image col-start-7 col-span-6">
+                <?php 
+                // Affiche l'image de la section notre savoir faire
+                $image = get_field('image');
+                if ($image) : ?>
+                    <img class="w-full" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                <?php endif; ?>
+            </div>
+
+        </section>
+
+        <div class="filter pb-4 pt-20">
+            <p>Filtrer</p>
+        </div>
     <?php
     // Début de la boucle WordPress pour les posts de type 'restaurations'
     $args = array(
