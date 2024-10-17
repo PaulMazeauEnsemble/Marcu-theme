@@ -1,4 +1,4 @@
-<div class="creation-card cursor-pointer" data-restauration-id="<?php echo get_the_ID(); ?>">
+<div class="creation-card cursor-pointer" data-creation-id="<?php echo get_the_ID(); ?>">
     <div class="apercu">
         <?php 
         // Affiche l'image de la section héros   
