@@ -55,6 +55,9 @@ function register_restaurations_post_type() {
         'menu_position'      => null,
         'supports'           => array('title', 'editor', 'thumbnail'),
         'menu_icon'          => 'dashicons-hammer', // Icône pour "Restaurations"
+        'show_in_rest'       => true,
+        'rest_base'          => 'restaurations',
+        'rest_controller_class' => 'WP_REST_Posts_Controller',
     );
 
     register_post_type('restaurations', $args);
@@ -122,5 +125,66 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false
     ));
 }
+
+function my_acf_json_load_point($paths) {
+    unset($paths[0]);
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+}
+add_filter('acf/settings/load_json', 'my_acf_json_load_point');
+
+function my_acf_to_rest_api($response, $post, $request) {
+    if (!function_exists('get_fields')) return $response;
+
+    if (isset($post)) {
+        $acf = get_fields($post->ID);
+        $response->data['acf'] = $acf;
+    }
+    return $response;
+}
+add_filter('rest_prepare_restaurations', 'my_acf_to_rest_api', 10, 3);
+
+add_action('rest_api_init', function () {
+    register_rest_route('wp/v2', '/restaurations/(?P<id>\d+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_restauration',
+        'args' => array(
+            'id' => array(
+                'validate_callback' => function($param, $request, $key) {
+                    return is_numeric($param);
+                }
+            ),
+        ),
+    ));
+});
+
+function get_restauration($request) {
+    $post_id = $request['id'];
+    $post = get_post($post_id);
+
+    if (empty($post) || $post->post_type !== 'restaurations') {
+        return new WP_Error('no_restauration', 'Restauration non trouvée', array('status' => 404));
+    }
+
+    $response = array(
+        'id' => $post->ID,
+        'title' => array(
+            'rendered' => get_the_title($post->ID)
+        ),
+        'content' => array(
+            'rendered' => apply_filters('the_content', $post->post_content)
+        ),
+        'acf' => get_fields($post->ID)
+    );
+
+    return new WP_REST_Response($response, 200);
+}
+
+function modal_scripts() {
+    if (is_page_template('restauration.php')) {
+        wp_enqueue_script('restauration-modal', get_template_directory_uri() . '/js/restauration-modal.js', array('jquery'), '1.0', true);
+    }
+}
+add_action('wp_enqueue_scripts', 'modal_scripts');
 
 ?>
