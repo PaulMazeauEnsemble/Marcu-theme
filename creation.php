@@ -11,7 +11,7 @@ include('header.php');
 
             <div class="hero-text col-span-6 col-start-1 flex flex-col justify-between">
                 <h1 class="font-tiempos font-light text-5xl col-span-10 col-start-2"><?php the_field('titre'); ?></h1>
-                <p class="font-untitled text-base col-span-10 col-start-2"><?php echo nl2br(get_field('description')); ?></p>
+                <p class="font-untitled text-2xl col-span-10 col-start-2"><?php echo nl2br(get_field('description')); ?></p>
             </div>
 
             <div class="hero-image col-start-7 col-span-6">

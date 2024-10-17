@@ -18,7 +18,7 @@ include('header.php');
                     // Affiche l'image de la section héros   
                     $illustration = get_sub_field('illustration');
                     if ($illustration) : ?>
-                        <img class="col-span-6 col-start-4 pt-14" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                        <img class="col-span-6 col-start-4 pt-14 w-full" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
                     <?php endif; ?>
 
                     <p class="col-span-6 col-start-4 text-center pt-14"><?php the_sub_field('description'); ?></p>

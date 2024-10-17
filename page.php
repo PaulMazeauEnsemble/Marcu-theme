@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
-<div id="primary">
-    <main id="main" class="site-main">
+<div id="primary" class="content bg-color-background pt-44">
+    <main id="main" class="site-main ">
         <?php
         while ( have_posts() ) :
             the_post();
