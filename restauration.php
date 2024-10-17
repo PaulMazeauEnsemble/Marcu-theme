@@ -37,14 +37,28 @@ include('header.php');
             );
             $restaurations_query = new WP_Query($args);
 
+            // Récupérer les citations du champ répéteur
+            $citations = get_field('citations');
+            $citation_index = 0;
+
             if ($restaurations_query->have_posts()) :
                 $count = 0;
                 $line_items = 0;
+                $line_count = 0;
 
                 while ($restaurations_query->have_posts()) : $restaurations_query->the_post();
 
                     if ($line_items == 0) : // Début d'une nouvelle ligne
                         $empty_position = rand(1, 2); // Position aléatoire pour l'espace vide (2ème ou 3ème position)
+                        $line_count++;
+
+                        // Afficher une citation seulement après la première ligne
+                        if ($line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
+                            echo '<div class="col-span-7 col-start-5 py-8">';
+                            echo '<p class="font-tiempos text-4xl">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
+                            echo '</div>';
+                            $citation_index++;
+                        endif;
                     endif;
 
                     if ($line_items == $empty_position) :
@@ -69,6 +83,15 @@ include('header.php');
                     endif;
 
                 endwhile;
+
+                // Afficher les citations restantes à la fin si nécessaire
+                while ($citation_index < count($citations)) :
+                    echo '<div class="col-span-12 py-8">';
+                    echo '<p class="font-tiempos text-4xl flex justify-center">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
+                    echo '</div>';
+                    $citation_index++;
+                endwhile;
+
                 wp_reset_postdata();
             else :
                 echo '<p>Aucune restauration trouvée.</p>';
@@ -87,5 +110,5 @@ include('header.php');
 </div>
 
 <?php
-include('footer.php');
+get_footer();
 ?>
