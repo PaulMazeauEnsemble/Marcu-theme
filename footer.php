@@ -3,34 +3,30 @@
 ?>
 
 <footer class="site-footer bg-color-background px-4 py-8">
-
-    <div class="grid grid-cols-12 gap-x-4">
-        <h1 class="font-tiempos font-light text-5xl col-span-6"><?php the_field('titre', 'option'); ?></h1>
-        <p class="font-untitled font-light text-base col-span-3 col-start-7"><?php the_field('resume', 'option'); ?></p>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-4 gap-y-4">
+        <h1 class="font-tiempos font-light text-5xl col-span-1 md:col-span-6 order-1 md:order-none"><?php the_field('titre', 'option'); ?></h1>
+        <p class="font-untitled font-light text-base col-span-1 md:col-span-3 md:col-start-7 order-2 md:order-none"><?php the_field('resume', 'option'); ?></p>
 
         <?php if (have_rows('adresse', 'option')) : ?>
             <?php while (have_rows('adresse', 'option')) : the_row(); ?>
-
-                <div class="adresse-text col-span-2 col-start-10">
+                <div class="adresse-text col-span-1 md:col-span-2 md:col-start-10 order-3 md:order-none">
                     <p class="font-untitled font-light text-base"><?php the_sub_field('rue'); ?></p>
                     <p class="font-untitled font-light text-base"><?php the_sub_field('ville'); ?></p>
                     <p class="font-untitled font-light text-base"><?php the_sub_field('complement'); ?></p>
                 </div>
-
             <?php endwhile; ?>
         <?php endif; ?>
 
         <?php 
-        // Affiche l'image de la section héros   
+        // Affiche le logo   
         $illustration = get_field('logo', 'option');
         if ($illustration) : ?>
-            <img class="col-span-1 col-start-12" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+            <img class="col-span-1 md:col-span-1 md:col-start-12 order-6 md:order-none" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
         <?php endif; ?>
         
         <?php if (have_rows('liens', 'option')) : ?>
             <?php while (have_rows('liens', 'option')) : the_row(); ?>
-
-                <div class="liens-text col-span-3 col-start-7 pt-5 flex flex-col">
+                <div class="liens-text col-span-1 md:col-span-3 md:col-start-7 md:pt-5 flex flex-col order-4 md:order-none">
                     <?php 
                     // Affiche le lien des mentions legales
                     $lien = get_sub_field('mentions_legales');
@@ -56,14 +52,12 @@
                         </a>
                     <?php endif; ?>
                 </div>
-
             <?php endwhile; ?>
         <?php endif; ?>
 
         <?php if (have_rows('contact', 'option')) : ?>
             <?php while (have_rows('contact', 'option')) : the_row(); ?>
-
-                <div class="contact-text col-span-2 col-start-10 flex flex-col pt-5">
+                <div class="contact-text col-span-1 md:col-span-2 md:col-start-10 flex flex-col md:pt-5 order-5 md:order-none">
                     <p class="font-untitled font-light text-base"><?php the_sub_field('telephone_1'); ?></p>
                     <p class="font-untitled font-light text-base"><?php the_sub_field('telephone_2'); ?></p>
                     <?php 
@@ -75,10 +69,8 @@
                         </a>
                     <?php endif; ?>
                 </div>
-
             <?php endwhile; ?>
         <?php endif; ?>
-        
     </div>
 </footer>
 
@@ -88,6 +80,7 @@
 
 
 <script>
+//Modal pour les restaurations
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Script chargé');
     const cards = document.querySelectorAll('.restauration-card');
@@ -183,6 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
     modalOverlay.addEventListener('click', closeModalFunction);
 });
 
+
+//Modal pour les créations
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Script chargé');
     const cards = document.querySelectorAll('.creation-card');
