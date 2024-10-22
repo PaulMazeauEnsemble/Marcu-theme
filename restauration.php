@@ -78,7 +78,7 @@ include('header.php');
 
                     // Afficher une citation seulement après la première ligne
                     if ($line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
-                        echo '<div class="col-span-1 col-start-1 md:col-span-7 md:col-start-5 py-8">';
+                        echo '<div class="col-span-1 md:col-span-7 md:col-start-5 py-8 citation-item">';
                         echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center md:block ">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
                         echo '</div>';
                         $citation_index++;
@@ -86,7 +86,7 @@ include('header.php');
                 endif;
 
                 if ($line_items == $empty_position) :
-                    echo '<div class="col-span-1 md:col-span-3"></div>'; // Espace vide
+                    echo '<div  id="restaurations-Items" class="col-span-1 md:col-span-3"></div>'; // Espace vide
                     $line_items++;
                 endif;
 
@@ -101,7 +101,7 @@ include('header.php');
                         }
                     }
                     ?>
-                    <div class="col-span-1 md:col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
+                    <div  id="restaurations-Items" class="col-span-1 md:col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
                         <?php include('components/restauration-card.php'); ?>
                     </div>
         <?php
@@ -150,12 +150,19 @@ include('header.php');
     </div>
 </div>
 
+<style>
+.hidden-item {
+    display: none;
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const dropdownButton = document.getElementById('dropdownDefaultButton');
     const dropdownMenu = document.getElementById('dropdown');
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const restaurationItems = document.querySelectorAll('.col-span-3');
+    const restaurationItems = document.querySelectorAll('#restaurations-grid > .col-span-1, #restaurations-grid > .md\\:col-span-3');
+    const citationItems = document.querySelectorAll('#restaurations-grid > .citation-item');
 
     dropdownButton.addEventListener('click', function() {
         dropdownMenu.classList.toggle('hidden');
@@ -168,10 +175,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             restaurationItems.forEach(item => {
                 if (filter === 'all' || item.classList.contains(filter)) {
-                    item.style.display = '';
+                    item.classList.remove('hidden-item');
                 } else {
-                    item.style.display = 'none';
+                    item.classList.add('hidden-item');
                 }
+            });
+
+            // Assurez-vous que les citations restent visibles
+            citationItems.forEach(citation => {
+                citation.classList.remove('hidden-item');
             });
 
             // Fermer le menu déroulant après la sélection
