@@ -106,6 +106,46 @@ function register_creations_post_type() {
 
 add_action('init', 'register_creations_post_type');
 
+// Enregistrement du type de post personnalisé 'savoir faire'
+function register_savoir_faire_post_type() {
+    $labels = array(
+        'name'               => 'Savoir faire', 
+        'singular_name'      => 'Savoir faire',
+        'menu_name'          => 'Savoir faire',
+        'name_admin_bar'     => 'Savoir faire',
+        'add_new'            => 'Ajouter Nouveau',
+        'add_new_item'       => 'Ajouter Nouveau savoir faire',
+        'new_item'           => 'Nouveau savoir faire',
+        'edit_item'          => 'Éditer savoir faire',
+        'view_item'          => 'Voir savoir faire',
+        'all_items'          => 'Tous les savoir faire',
+        'search_items'       => 'Rechercher savoir faire',
+        'parent_item_colon'  => 'Parent savoir faire:',
+        'not_found'          => 'Aucun savoir faire trouvé.',
+        'not_found_in_trash' => 'Aucun savoir faire trouvé dans la corbeille.'
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'savoir-faire'),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array('title', 'editor', 'thumbnail'),
+        'menu_icon'          => 'dashicons-admin-customizer', // Icône pour "Créations"
+    );
+
+    register_post_type('savoir-faire', $args);
+}
+
+add_action('init', 'register_savoir_faire_post_type');
+
 function register_all_menus() {
     register_nav_menus(
         array(

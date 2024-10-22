@@ -41,7 +41,7 @@
     <script>
         window.addEventListener('scroll', function() {
             const logo = document.getElementById('logo');
-            if (window.scrollY > window.innerHeight) {
+            if (window.scrollY > window.innerHeight / 2) {
                 logo.classList.add('h-auto', 'w-10');
                 logo.classList.remove('h-auto', 'w-24');
             } else {
