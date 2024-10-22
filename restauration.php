@@ -6,19 +6,18 @@ Template Name: Restauration
 include('header.php');
 ?>
 
-<div class="content pt-44 bg-color-background">
-    <section class="hero grid grid-cols-12 gap-x-4 px-4 pb-8">
-        <div class="hero-text col-span-6 col-start-1 flex flex-col justify-between">
-            <h1 class="font-tiempos font-light text-5xl col-span-10 col-start-2"><?php the_field('titre'); ?></h1>
-            <p class="font-untitled col-span-10 col-start-2 text-2xl"><?php echo nl2br(get_field('description')); ?></p>
+<div class="content pt-20 md:pt-44 bg-color-background">
+    <section class="hero grid grid-cols-1 md:grid-cols-12 gap-x-4 px-4 pb-8">
+        <div class="hero-text col-span-1 md:col-span-6 flex flex-col justify-between order-2 md:order-none">
+            <h1 class="font-tiempos font-light text-4xl md:text-5xl mt-3 mb-9 md:mt-0 md:mb-0"><?php the_field('titre'); ?></h1>
+            <p class="font-untitled text-xl md:text-2xl"><?php echo nl2br(get_field('description')); ?></p>
         </div>
 
-        <div class="hero-image col-start-7 col-span-6">
+        <div class="hero-image col-span-1 md:col-start-7 md:col-span-6">
             <?php 
-            // Affiche l'image de la section notre savoir faire
             $image = get_field('image');
             if ($image) : ?>
-                <img class="w-full" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                <img class="w-full order-1 md:order-none" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
             <?php endif; ?>
         </div>
     </section>
@@ -54,7 +53,7 @@ include('header.php');
     </div>
     </div>
 
-    <div id="restaurations-grid" class="grid grid-cols-12">
+    <div id="restaurations-grid" class="grid grid-cols-1 md:grid-cols-12">
         <?php
         $args = array(
             'post_type' => 'restaurations',
@@ -79,15 +78,15 @@ include('header.php');
 
                     // Afficher une citation seulement après la première ligne
                     if ($line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
-                        echo '<div class="col-span-7 col-start-5 py-8">';
-                        echo '<p class="font-tiempos text-4xl">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
+                        echo '<div class="col-span-1 col-start-1 md:col-span-7 md:col-start-5 py-8">';
+                        echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center md:block ">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
                         echo '</div>';
                         $citation_index++;
                     endif;
                 endif;
 
                 if ($line_items == $empty_position) :
-                    echo '<div class="col-span-3"></div>'; // Espace vide
+                    echo '<div class="col-span-1 md:col-span-3"></div>'; // Espace vide
                     $line_items++;
                 endif;
 
@@ -102,7 +101,7 @@ include('header.php');
                         }
                     }
                     ?>
-                    <div class="col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
+                    <div class="col-span-1 md:col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
                         <?php include('components/restauration-card.php'); ?>
                     </div>
         <?php
@@ -112,7 +111,7 @@ include('header.php');
                 $count++;
 
                 if ($line_items == 4) :
-                    echo '<div class="col-span-12"></div>'; // Forcer une nouvelle ligne
+                    echo '<div class="col-span-1 md:col-span-12"></div>'; // Forcer une nouvelle ligne
                     $line_items = 0;
                 endif;
 
@@ -120,8 +119,8 @@ include('header.php');
 
             // Afficher les citations restantes à la fin si nécessaire
             while ($citation_index < count($citations)) :
-                echo '<div class="col-span-12 py-8">';
-                echo '<p class="font-tiempos text-4xl flex justify-center">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
+                echo '<div class="col-span-1 md:col-span-12 py-8">';
+                echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
                 echo '</div>';
                 $citation_index++;
             endwhile;
