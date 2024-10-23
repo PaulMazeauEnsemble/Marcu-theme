@@ -101,7 +101,7 @@ include('header.php');
                         }
                     }
                     ?>
-                    <div id="restaurations-Items" class="col-span-1 md:col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
+                    <div id="restaurations-Items" class="col-span-1 md:col-span-3 p-4 opacity-0 transform translate-y-4 transition-all duration-1000 ease-in-out<?php echo esc_attr($category_classes); ?>">
                         <?php include('components/restauration-card.php'); ?>
                     </div>
 <?php
@@ -187,6 +187,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fermer le menu déroulant après la sélection
             dropdownMenu.classList.add('hidden');
         });
+    });
+
+        // Intersection Observer for fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-4');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#restaurations-grid > .col-span-1, #restaurations-grid > .md\\:col-span-3').forEach(item => {
+        observer.observe(item);
     });
 });
 </script>
