@@ -24,7 +24,7 @@ include('header.php');
 
 
 <div class="">
-    <div class="filter pb-4 pt-20 px-4 h-32 sticky top-0">
+    <div class="filter pb-4 pt-16 px-4 h-32 sticky top-0">
     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black border-2 border-black bg-color-background focus:outline-nonefont-untitled font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center w-fit" type="button">Filtres <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
         </svg>
@@ -78,7 +78,7 @@ include('header.php');
 
                     // Afficher une citation seulement après la première ligne
                     if ($line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
-                        echo '<div class="col-span-1 md:col-span-7 md:col-start-5 py-8 citation-item">';
+                        echo '<div class="col-span-1 col-start-1 md:col-span-7 md:col-start-5 py-8">';
                         echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center md:block ">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
                         echo '</div>';
                         $citation_index++;
