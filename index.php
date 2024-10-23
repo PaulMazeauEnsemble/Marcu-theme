@@ -14,16 +14,22 @@ include('header.php');
                 <div class="hero-section-content col-span-1 md:col-span-6 mb-6 md:mb-0">
                     <?php 
                     $illustration = get_sub_field('illustration_hero_section');
+                    $lien = get_sub_field('lien');
                     if ($illustration) : ?>
-                        <img class="w-full mb-3" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                        <?php if ($lien) : ?>
+                            <a href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
+                        <?php endif; ?>
+                            <img class="w-full mb-3" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                        <?php if ($lien) : ?>
+                            </a>
+                        <?php endif; ?>
                     <?php endif; ?>
 
                     <?php 
-                        $lien = get_sub_field('lien');
-                        if ($lien) : ?>
-                            <a class="font-tiempos font-light text-4xl md:text-6xl" href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
-                                <?php echo esc_html($lien['title']); ?>
-                            </a>
+                    if ($lien) : ?>
+                        <a class="font-tiempos font-light text-4xl md:text-6xl" href="<?php echo esc_url($lien['url']); ?>" target="<?php echo esc_attr($lien['target'] ?: '_self'); ?>">
+                            <?php echo esc_html($lien['title']); ?>
+                        </a>
                     <?php endif; ?>
                 </div>
             <?php endwhile; ?>
