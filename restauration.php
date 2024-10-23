@@ -76,8 +76,8 @@ include('header.php');
                     $empty_position = rand(1, 2); // Position aléatoire pour l'espace vide (2ème ou 3ème position)
                     $line_count++;
 
-                    // Afficher une citation seulement après la première ligne
-                    if ($line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
+                    // Afficher une citation seulement après la première ligne et si des citations existent
+                    if (!empty($citations) && $line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
                         echo '<div class="col-span-1 col-start-1 md:col-span-7 md:col-start-5 py-8">';
                         echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center md:block ">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
                         echo '</div>';
@@ -86,12 +86,12 @@ include('header.php');
                 endif;
 
                 if ($line_items == $empty_position) :
-                    echo '<div  id="restaurations-Items" class="col-span-1 md:col-span-3"></div>'; // Espace vide
+                    echo '<div id="restaurations-Items" class="col-span-1 md:col-span-3"></div>'; // Espace vide
                     $line_items++;
                 endif;
 
                 if ($line_items < 4) :
-        ?>
+?>
                     <?php
                     $categories = get_the_terms(get_the_ID(), 'categorie-restauration');
                     $category_classes = '';
@@ -101,10 +101,10 @@ include('header.php');
                         }
                     }
                     ?>
-                    <div  id="restaurations-Items" class="col-span-1 md:col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
+                    <div id="restaurations-Items" class="col-span-1 md:col-span-3 p-4<?php echo esc_attr($category_classes); ?>">
                         <?php include('components/restauration-card.php'); ?>
                     </div>
-        <?php
+<?php
                     $line_items++;
                 endif;
 
@@ -118,20 +118,20 @@ include('header.php');
             endwhile;
 
             // Afficher les citations restantes à la fin si nécessaire
-            while ($citation_index < count($citations)) :
-                echo '<div class="col-span-1 md:col-span-12 py-8">';
-                echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
-                echo '</div>';
-                $citation_index++;
-            endwhile;
+            if (!empty($citations)) {
+                while ($citation_index < count($citations)) :
+                    echo '<div class="col-span-1 md:col-span-12 py-8">';
+                    echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
+                    echo '</div>';
+                    $citation_index++;
+                endwhile;
+            }
 
             wp_reset_postdata();
         else :
             echo '<p>Aucune restauration trouvée.</p>';
         endif;
-        ?>
 
-        <?php
         // Récupérer les termes de la taxonomie 'categorie-restauration'
         $categories = get_terms(array(
             'taxonomy' => 'categorie-restauration',
