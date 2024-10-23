@@ -78,7 +78,7 @@ include('header.php');
 
                     // Afficher une citation seulement après la première ligne et si des citations existent
                     if (!empty($citations) && $line_count > 1 && $citation_index < count($citations) && rand(0, 1) == 1) :
-                        echo '<div class="col-span-1 col-start-1 md:col-span-7 md:col-start-5 py-8">';
+                        echo '<div class="col-span-1 col-start-1 md:col-span-7 md:col-start-5 pt-32 pb-20">';
                         echo '<p class="font-tiempos text-2xl md:text-4xl flex justify-center md:block ">' . nl2br(esc_html($citations[$citation_index]['citation'])) . '</p>';
                         echo '</div>';
                         $citation_index++;
