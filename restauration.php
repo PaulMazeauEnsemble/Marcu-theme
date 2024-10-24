@@ -23,17 +23,28 @@ include('header.php');
     </section>
 
 
-<div class="">
-    <div class="filter pb-4 pt-16 md:pt-20 px-4 h-32 sticky top-0 z-20">
-    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black border-2 border-black bg-color-background focus:outline-nonefont-untitled font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center w-fit" type="button">Filtres <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    <div class="">
+    <div class="filter pb-4 pt-16 md:pt-20 px-4 h-32 sticky top-0 z-20">    
+    <div class="relative inline-block text-left">
+    <button id="dropdownButton" 
+            class="inline-flex gap-3 justify-between items-center w-full px-5 py-2.5 text-sm font-medium text-black border-2 border-black bg-color-background"
+            onclick="toggleDropdown()">
+      <p class="font-untitled pr-2">Filtres</p>
+
+      <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H14" stroke="black"/>
+            <path d="M4 7H14" stroke="black"/>
+            <path d="M4 10H14" stroke="black"/>
         </svg>
     </button>
 
-    <div id="dropdown" class="z-50 hidden border-t-0 border-2 border-black bg-color-background divide-y divide-gray-100 rounded-b-lg shadow w-fit dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-            <li><a href="#" class="block px-4 py-2 filter-btn" data-filter="all">Tous</a></li>
-            <?php
+    <div id="dropdownMenu" 
+         class="hidden mt-0 w-full border-2 border-black bg-color-background shadow-lg border-t-0 ">
+      <ul class="py-2 text-sm text-gray-700">
+        <li class="px-4 py-2 cursor-pointer">
+            <a href="#" class="filter-btn" data-filter="all">Tous</a>
+        </li>
+        <?php
             $categories = get_terms(array(
                 'taxonomy' => 'categorie-restauration',
                 'hide_empty' => false,
@@ -49,8 +60,9 @@ include('header.php');
                 echo '<li><p class="block px-4 py-2">Aucune catégorie trouvée.</p></li>';
             }
             ?>
-        </ul>
+      </ul>
     </div>
+  </div>
     </div>
 
     <div id="restaurations-grid" class="grid grid-cols-1 md:grid-cols-12 relative z-10">
@@ -148,15 +160,20 @@ include('header.php');
     <div id="modalContent"></div>
 </div>
 
-<style>
-.hidden-item {
-    display: none;
-}
-</style>
-
 <script>
+
+function toggleDropdown() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownButton = document.getElementById('dropdownButton');
+        dropdownMenu.classList.toggle('hidden');
+
+        // Ajout ou suppression de la classe pour gérer la bordure
+        dropdownButton.classList.toggle('border-b-0', !dropdownMenu.classList.contains('hidden'));
+    }
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    const dropdownButton = document.getElementById('dropdownDefaultButton');
+    const dropdownButton = document.getElementById('dropdownButton');
     const dropdownMenu = document.getElementById('dropdown');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const restaurationItems = document.querySelectorAll('#restaurations-grid > .col-span-1, #restaurations-grid > .md\\:col-span-3');
@@ -173,9 +190,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             restaurationItems.forEach(item => {
                 if (filter === 'all' || item.classList.contains(filter)) {
-                    item.classList.remove('hidden-item');
+                    item.classList.remove('hidden');
                 } else {
-                    item.classList.add('hidden-item');
+                    item.classList.add('hidden');
                 }
             });
 
