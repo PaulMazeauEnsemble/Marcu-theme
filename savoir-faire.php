@@ -75,19 +75,17 @@ include('header.php');
 
                 <h2 class="font-tiempos font-light text-4xl md:text-6xl pt-11 pb-9 md:pb-36 px-4">Nos Savoir-Faire</h2>
                 
-                <div class="flex overflow-x-auto w-full gap-x-4 px-4 no-scrollbar pb-24">
+                <div class="flex overflow-x-auto gap-x-4 px-4 no-scrollbar pb-24">
                     <?php while ($savoir_faire_query->have_posts()) : $savoir_faire_query->the_post(); ?>
-                        <a href="<?php the_permalink(); ?>" class="item min-w-96 flex-shrink-0"> 
-                            
-                        <?php 
-                        // Affiche l'image de la section héros   
-                        $illustration = get_field('apercu');
-                        if ($illustration) : ?>
-                            <img class="col-span-6 col-start-4 w-full" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
-                        <?php endif; ?>
+                        <a href="<?php the_permalink(); ?>" class="item flex-shrink-0 w-full md:w-fit max-w-96"> 
+                            <?php 
+                            $illustration = get_field('apercu');
+                            if ($illustration) : ?>
+                                <img class="col-span-6 col-start-4 w-full object-cover h-full max-h-96" src="<?php echo esc_url($illustration['url']); ?>" alt="<?php echo esc_attr($illustration['alt']); ?>" />
+                            <?php endif; ?>
 
-                            <h4 class="font-untitled font-medium text-base pt-2"><?php the_title(); ?></h4>
-                            <p class="font-untitled text-base w-3/5"><?php the_field('courte_description'); ?></p>
+                            <h4 class="font-untitled font-medium text-base"><?php the_title(); ?></h4>
+                            <p class="font-untitled text-base w-full md:w-3/5"><?php the_field('courte_description'); ?></p>
                         </a>
                     <?php endwhile; ?>
                 </div>
