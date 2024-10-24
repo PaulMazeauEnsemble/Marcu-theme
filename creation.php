@@ -27,7 +27,7 @@ include('header.php');
     <div class="filter pb-4 pt-16 md:pt-20 px-4 h-32 sticky top-0 z-20">    
     <div class="relative inline-block text-left">
     <button id="dropdownButton" 
-            class="inline-flex gap-3 justify-between items-center w-full px-5 py-2.5 text-sm font-medium text-black border-2 border-black bg-color-background rounded-t-lg shadow-sm"
+            class="inline-flex gap-3 justify-between items-center w-full px-5 py-2.5 text-sm font-medium text-black border-2 border-black bg-color-background"
             onclick="toggleDropdown()">
       <p class="font-untitled pr-2">Filtres</p>
 
@@ -39,7 +39,7 @@ include('header.php');
     </button>
 
     <div id="dropdownMenu" 
-         class="hidden mt-0 w-full border-2 border-black bg-color-background rounded-b-lg shadow-lg border-t-0 ">
+         class="hidden mt-0 w-full border-2 border-black bg-color-background shadow-lg border-t-0 ">
       <ul class="py-2 text-sm text-gray-700">
         <li class="px-4 py-2 cursor-pointer">
             <a href="#" class="filter-btn" data-filter="all">Tous</a>
@@ -167,10 +167,14 @@ include('header.php');
 </style>
 
 <script>
-      function toggleDropdown() {
-    const dropdownMenu = document.getElementById('dropdownMenu');
-    dropdownMenu.classList.toggle('hidden');
-  }
+    function toggleDropdown() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownButton = document.getElementById('dropdownButton');
+        dropdownMenu.classList.toggle('hidden');
+
+        // Ajout ou suppression de la classe pour gérer la bordure
+        dropdownButton.classList.toggle('border-b-0', !dropdownMenu.classList.contains('hidden'));
+    }
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -191,19 +195,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             creationItems.forEach(item => {
                 if (filter === 'all' || item.classList.contains(filter)) {
-                    item.classList.remove('hidden-item');
+                    item.classList.remove('hidden');
                 } else {
-                    item.classList.add('hidden-item');
+                    item.classList.add('hidden');
                 }
             });
 
-            // Assurez-vous que les citations restent visibles
             citationItems.forEach(citation => {
                 citation.classList.remove('hidden-item');
             });
 
-            // Fermer le menu déroulant après la sélection
-            dropdownMenu.classList.add('hidden');
+            // Fermer le menu déroulant après avoir sélectionné un filtre
+            dropdownMenu.classList.add('hidden'); // Ajoutez cette ligne
         });
     });
 

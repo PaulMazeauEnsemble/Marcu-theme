@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Tiempos';
 
-  src: url('assets/fonts/Tiempos-light.woff2') format('woff2');
+  src: url('../assets/fonts/Tiempos-light.woff2') format('woff2');
 
   font-weight: 300;
 
@@ -13,7 +13,7 @@
 @font-face {
   font-family: 'Tiempos';
 
-  src: url('assets/fonts/Tiempos-regular.woff2') format('woff2');
+  src: url('../assets/fonts/Tiempos-regular.woff2') format('woff2');
 
   font-weight: 400;
 
@@ -25,7 +25,7 @@
 @font-face {
   font-family: 'Untitled Sans';
 
-  src: url('assets/fonts/Untitled-sans-regular.woff2') format('woff2');
+  src: url('../assets/fonts/Untitled-sans-regular.woff2') format('woff2');
 
   font-weight: 400;
 
@@ -37,7 +37,7 @@
 @font-face {
   font-family: 'Untitled Sans';
 
-  src: url('assets/fonts/Untitled-sans-medium.woff2') format('woff2');
+  src: url('../assets/fonts/Untitled-sans-medium.woff2') format('woff2');
 
   font-weight: 500;
 
@@ -905,10 +905,6 @@ video {
   max-height: 24rem;
 }
 
-.max-h-full {
-  max-height: 100%;
-}
-
 .min-h-\[calc\(100vh-215px\)\] {
   min-height: calc(100vh - 215px);
 }
@@ -954,10 +950,6 @@ video {
   flex-shrink: 0;
 }
 
-.origin-top {
-  transform-origin: top;
-}
-
 .translate-x-full {
   --tw-translate-x: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -980,16 +972,6 @@ video {
 
 .translate-y-\[-100\%\] {
   --tw-translate-y: -100%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.scale-y-0 {
-  --tw-scale-y: 0;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.scale-y-100 {
-  --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1142,6 +1124,10 @@ video {
 
 .border-t-0 {
   border-top-width: 0px;
+}
+
+.border-b-0 {
+  border-bottom-width: 0px;
 }
 
 .border-black {
