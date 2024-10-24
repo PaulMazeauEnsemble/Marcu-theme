@@ -1,29 +1,27 @@
-
-
 @font-face {
   font-family: 'Tiempos';
-  src: url('assets/fonts/Tiempos-light.woff2') format('woff2');
+  src: url('../assets/fonts/Tiempos-light.woff2') format('woff2');
   font-weight: 300; /* Light */
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Tiempos';
-  src: url('assets/fonts/Tiempos-regular.woff2') format('woff2');
+  src: url('../assets/fonts/Tiempos-regular.woff2') format('woff2');
   font-weight: 400; /* Regular */
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('assets/fonts/Untitled-sans-regular.woff2') format('woff2');
+  src: url('../assets/fonts/Untitled-sans-regular.woff2') format('woff2');
   font-weight: 400; /* Regular */
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('assets/fonts/Untitled-sans-medium.woff2') format('woff2');
+  src: url('../assets/fonts/Untitled-sans-medium.woff2') format('woff2');
   font-weight: 500; /* Medium */
   font-style: normal;
 }
