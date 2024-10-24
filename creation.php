@@ -156,7 +156,10 @@ include('header.php');
     </div>
 </div>
 </div>
-
+<div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+<div id="creationModal" class="fixed inset-y-0 right-0 w-4/6 bg-color-background-bright shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto z-50">
+    <div id="modalContent"></div>
+</div>
 <style>
 .hidden-item {
     display: none;
